@@ -33,9 +33,43 @@ void testHeroClass() {
     assert(test2.attendTherapy() < 10);
 }
 
-void goOnQuest(Hero hero) {
+void goOnQuest(Hero& hero) {
+    short difficulty = getRandNumBelow(100);
+    short reqiredStrength;
+    if (difficulty < 50) { // Easy
+        reqiredStrength = 5;
+    }
+    else if (difficulty < 85) { // Medium
+        reqiredStrength = 25;
+    }
+    else {
+        reqiredStrength = 75;
+    }
 
+    short successChance = hero.getStrength() >= reqiredStrength ? 50 : 20;
+    short neutralChance = 30;
+    short roll = getRandNumBelow(100);
+
+    string outcome;
+    short newCourage = hero.getCourage();
+    if (roll < successChance) {
+        outcome = " was successful in their ";
+        newCourage -= 1;
+    }
+    else if (roll < successChance + neutralChance) {
+        outcome = " had a neutral ";
+        newCourage -= 3;
+    }
+    else {
+        outcome = " failed their ";
+        newCourage -= 6;
+    }
+    hero.setCourage(newCourage);
+
+    cout << hero.getName() << outcome << "quest.\n";
+    cout << "Their courage is now " << hero.getCourage() << ".\n";
 }
+
 Hero createHero() {
     string name;
     Hero hero;
@@ -53,7 +87,7 @@ void doSelection(char selection, Hero& hero) {
     cout << clearAndGoHome;
     switch (selection) {
         case '1': // Go on a quest
-            
+            goOnQuest(hero);
             break;
         case '2': // Train
             short minutes;
@@ -86,8 +120,7 @@ void menu(char &restartCharacter, Hero& hero)
     cin.ignore(INF_FLAG, '\n');
     cout << clearAndGoHome;
 
-    switch (menuSelected)
-    {
+    switch (menuSelected) {
     case '1':
     case '2':
     case '3':
@@ -99,8 +132,7 @@ void menu(char &restartCharacter, Hero& hero)
         break;
     }
 
-    if (restartCharacter != 'n')
-    { // Logic for restarting
+    if (restartCharacter != 'n') { // Logic for restarting
         cout << "Go back to menu? (Y/N): ";
         cin >> restartCharacter;
         cin.ignore(INF_FLAG, '\n');

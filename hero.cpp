@@ -1,6 +1,5 @@
 #include "hero.h"
-#include "randUtils.h"
-#include <cmath>
+#include "numUtils.h"
 
 Hero::Hero() {
     strength = getRandNumBelow(10);

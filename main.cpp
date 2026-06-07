@@ -160,7 +160,7 @@ void testHeroClass() {
 
 int main() {
     srand(static_cast<unsigned int>(time(nullptr))); // Seed time to rand
-    bool isDebug{true};
+    bool isDebug{false};
     if (isDebug) {
         cout << "Testing Hero class... \n";
         testHeroClass();

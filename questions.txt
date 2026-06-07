@@ -1,0 +1,9 @@
+1. What data types did you use for the hero's internal variables? Could other types have functioned as well?
+I used shorts for strength/courage and a string for the name. Any number based variable could work for strength/courage while the name should only be a string.
+
+2. How easy would it be for you to expand your code, giving your hero new stats and things they can do?
+I think it would be pretty easy to expand my code. You just have to add more variables/functionality to the class in hero.h. 
+
+3. This is a framework that could be used as part of a game. Is there anything that feels like it's missing? Any obvious expansions you would make to this code?
+Maybe something to do with money to purchase items. A stamina/day system to prevent the user infinitely training their hero. I think the stamina and money system could be easy to implement
+while the day system would be a bit harder to do.

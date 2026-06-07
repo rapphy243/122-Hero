@@ -10,29 +10,6 @@ using namespace std;
 inline constexpr streamsize INF_FLAG{numeric_limits<streamsize>::max()};
 inline const string clearAndGoHome{"\x1B[2J\x1B[H"};
 
-void testHeroClass() {
-    Hero test = Hero();
-    Hero test2 = Hero("test");
-
-    assert(test.getName() == "Unknown");
-    assert(test.getStrength() < 10);
-    assert(test.getStrength() >= 0);
-    assert(test.getCourage() < 10);
-    assert(test.getCourage() >= 0);
-    assert(test.train(10) == 2);
-    assert(test.train(40) == 4);
-    assert(test.attendTherapy() < 10);
-
-    assert(test2.getName() == "test");
-    assert(test2.getStrength() < 10);
-    assert(test2.getStrength() >= 0);
-    assert(test2.getCourage() < 10);
-    assert(test2.getCourage() >= 0);
-    assert(test2.train(0) == 2);
-    assert(test2.train(60) == 8);
-    assert(test2.attendTherapy() < 10);
-}
-
 void goOnQuest(Hero& hero) {
     short difficulty = getRandNumBelow(100);
     short reqiredStrength;
@@ -147,9 +124,43 @@ void program() {
     } while (tolower(restartCharacter) == 'y');
 }
 
+void testHeroClass() {
+    Hero test = Hero();
+    Hero test2 = Hero("test");
+
+    assert(test.getName() == "Unknown");
+    assert(test.getStrength() < 10);
+    assert(test.getStrength() >= 0);
+    assert(test.getCourage() < 10);
+    assert(test.getCourage() >= 0);
+    assert(test.train(10) == 2);
+    assert(test.train(40) == 4);
+    assert(test.attendTherapy() < 10);
+    for (short i = 0; i < 5; ++i) {
+        goOnQuest(test);
+        test.train(40);
+    }
+
+    assert(test2.getName() == "test");
+    assert(test2.getStrength() < 10);
+    assert(test2.getStrength() >= 0);
+    assert(test2.getCourage() < 10);
+    assert(test2.getCourage() >= 0);
+    assert(test2.train(0) == 2);
+    assert(test2.train(60) == 8);
+    assert(test2.attendTherapy() < 10);
+    for (short i = 0; i < 5; ++i) {
+        goOnQuest(test2);
+    }
+    test2.train(240);
+    for (short i = 0; i < 5; ++i) {
+        goOnQuest(test2);
+    }
+}
+
 int main() {
     srand(static_cast<unsigned int>(time(nullptr))); // Seed time to rand
-    bool isDebug{false};
+    bool isDebug{true};
     if (isDebug) {
         cout << "Testing Hero class... \n";
         testHeroClass();

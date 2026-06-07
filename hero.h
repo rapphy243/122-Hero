@@ -1,5 +1,5 @@
-#ifndef hero_H
-#define hero_H
+#ifndef HERO_H
+#define HERO_H
 
 #include <string>
 
